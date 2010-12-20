@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="ShaderComposer.Interface.Menus.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="24" d:DesignWidth="300">
+    
+    <Menu IsMainMenu="True">
+        
+        <Menu.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFCAD3E2" Offset="0" />
+                <GradientStop Color="#FFAEB9CD" Offset="1" />
+            </LinearGradientBrush>
+        </Menu.Background>
+        
+        <!-- File -->
+        <MenuItem Header="_File">
+
+            <MenuItem Header="_New" InputGestureText="Ctrl+N" Command="New">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/New.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Open" InputGestureText="Ctrl+O" Command="Open">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Open.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Save" InputGestureText="Ctrl+S" Command="Save">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Save.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Save As" Command="SaveAs">
+            </MenuItem>
+
+            <MenuItem Header="_Close" Command="Close">
+            </MenuItem>
+            
+            <Separator />
+            
+            <MenuItem Header="_Build" Click="MenuItem_Click">
+            </MenuItem>
+                      
+            <Separator />
+
+            <MenuItem Header="_Exit" InputGestureText="Alt+F4" Command="Stop">
+            </MenuItem>
+
+        </MenuItem>
+        
+        <!-- Edit -->
+        <MenuItem Header="_Edit">
+
+            <MenuItem Header="_Undo" InputGestureText="Ctrl+Z" Command="Undo">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Undo.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Redo " InputGestureText="Ctrl+Y" Command="Undo">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Redo.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_New state" Click="NewState_Click">
+            </MenuItem>
+            
+            <Separator />
+
+            <MenuItem Header="_Cut" InputGestureText="Ctrl+X" Command="Cut">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Cut.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Copy" InputGestureText="Ctrl+C" Command="Copy">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Copy.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Paste" InputGestureText="Ctrl+V" Command="Paste">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Paste.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="_Delete" InputGestureText="Del" Command="Delete">
+                <MenuItem.Icon>
+                    <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Delete.png" Height="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <Separator />
+
+            <MenuItem Header="_Select All" InputGestureText="Ctrl+A" Command="SelectAll" />
+
+            <Separator />
+
+            <MenuItem Header="_Insert node" Name="MenuItem_InsertNode" />
+
+        </MenuItem>
+
+        <!-- View -->
+        <MenuItem Header="_View">
+
+            <MenuItem Header="Toolbars" SubmenuOpened="ToolbarsMenu_Opened">
+                <MenuItem Name="MenuItem_StandardToolbar" Header="Standard" IsCheckable="True" Checked="StandardToolbar_CheckedChanged" Unchecked="StandardToolbar_CheckedChanged" />
+                <MenuItem Name="MenuItem_NodesToolbar" Header="Nodes" IsCheckable="True" Checked="NodesToolbar_CheckedChanged" Unchecked="NodesToolbar_CheckedChanged" />
+            </MenuItem>
+
+        </MenuItem>
+
+        <!-- Libraries -->
+        <MenuItem Name="Libraries" Header="_Libraries">
+
+            <Separator />
+            
+            <MenuItem Header="_Load library..." />
+            
+        </MenuItem>
+        
+        <!-- Renderers -->
+        <MenuItem Name="Renderers" Header="_Renderers">
+
+            <Separator />
+            
+            <MenuItem Header="_Load renderer..." />
+            
+        </MenuItem>
+
+        <!-- Help -->
+        <MenuItem Header="_Help">
+
+            <MenuItem Header="About" />
+
+        </MenuItem>
+        
+    </Menu>
+</UserControl>

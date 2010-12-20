@@ -1,0 +1,51 @@
+﻿<Window x:Class="ShaderComposer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Menus="clr-namespace:ShaderComposer.Interface.Menus"
+        xmlns:Toolbars="clr-namespace:ShaderComposer.Interface.Toolbars"
+        xmlns:FilesTab="clr-namespace:ShaderComposer.Interface.FilesTab"
+        xmlns:Statusbars="clr-namespace:ShaderComposer.Interface.Statusbars"
+        Title="Shader Composer" Width="800" Height="600" WindowState="Maximized" 
+        Icon="pack://application:,,,/ShaderComposer;component/Interface/Icons/AppIcon.png">
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="Command_New"/>
+        <CommandBinding Command="Open" Executed="Command_Open"/>
+        <CommandBinding Command="Save" Executed="Command_Save" CanExecute="Command_CanSave"/>
+        <CommandBinding Command="SaveAs" Executed="Command_SaveAs" CanExecute="Command_CanSaveAs"/>
+        <CommandBinding Command="Close" Executed="Command_Close" CanExecute="Command_CanClose"/>
+        <CommandBinding Command="Stop" Executed="Command_Stop"/>
+        
+        <CommandBinding Command="Cut" Executed="Command_Cut" CanExecute="Command_CanCut"/>
+        <CommandBinding Command="Copy" Executed="Command_Copy" CanExecute="Command_CanCopy"/>
+        <CommandBinding Command="Paste" Executed="Command_Paste" CanExecute="Command_CanPaste"/>
+        <CommandBinding Command="Delete" Executed="Command_Delete" CanExecute="Command_CanDelete"/>
+
+        <CommandBinding Command="Undo" Executed="Command_Undo" CanExecute="Command_CanUndo"/>
+        <CommandBinding Command="Redo" Executed="Command_Redo" CanExecute="Command_CanRedo"/>
+
+        <CommandBinding Command="IncreaseZoom" Executed="Command_IncreaseZoom"/>
+        <CommandBinding Command="DecreaseZoom" Executed="Command_DecreaseZoom"/>
+    </Window.CommandBindings>
+    
+    <Border BorderBrush="DarkSlateGray" BorderThickness="1">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" /> <!-- Main menu  -->
+                <RowDefinition Height="Auto" /> <!-- Toolbars   -->
+                <RowDefinition Height="*" />    <!-- Files tab  -->
+                <RowDefinition Height="Auto" /> <!-- Status bar -->
+            </Grid.RowDefinitions>
+
+            <Menus:MainMenu x:Name="MainMenu" Grid.Row="0" />
+            
+            <Toolbars:ToolbarTray x:Name="ToolbarTray" Grid.Row="1" />
+            
+            <FilesTab:FilesTabCollection x:Name="FilesTabCollection" Grid.Row="2" />
+            
+            <Statusbars:MainStatusbar x:Name="MainStatusbar" Grid.Row="3" />
+
+        </Grid>
+    </Border>
+</Window>
