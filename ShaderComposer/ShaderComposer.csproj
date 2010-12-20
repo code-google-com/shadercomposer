@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{645DD826-DA3A-4835-B470-B6FEE7D5723F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShaderComposer</RootNamespace>
+    <AssemblyName>ShaderComposer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\ThirdParty\AvalonEdit\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Compile Include="Compilers\HLSLCompiler.cs" />
+    <Compile Include="Compilers\VariableStruct.cs" />
+    <Compile Include="FileManagement\File.cs" />
+    <Compile Include="FileManagement\FilesManager.cs" />
+    <Compile Include="FileManagement\FileState.cs" />
+    <Compile Include="Interface\Designer\Canvas\DynamicCanvas.cs" />
+    <Compile Include="Interface\Designer\Canvas\EnumerableFunction.cs" />
+    <Compile Include="Interface\Designer\Connection.xaml.cs">
+      <DependentUpon>Connection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Designer\DesignArea.xaml.cs">
+      <DependentUpon>DesignArea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Designer\Node.xaml.cs">
+      <DependentUpon>Node.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Designer\Variables\NumericTextBox.xaml.cs">
+      <DependentUpon>NumericTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Designer\Variables\Variable.xaml.cs">
+      <DependentUpon>Variable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FilesTab\FilesTabCollection.xaml.cs">
+      <DependentUpon>FilesTabCollection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FilesTab\FilesTabItem.xaml.cs">
+      <DependentUpon>FilesTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FileViewing\FileView.xaml.cs">
+      <DependentUpon>FileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\FileViewing\FileViewTabItem.xaml.cs">
+      <DependentUpon>FileViewTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Menus\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\ShaderIO\ShaderInput.xaml.cs">
+      <DependentUpon>ShaderInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\ShaderIO\ShaderOutput.xaml.cs">
+      <DependentUpon>ShaderOutput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Statusbars\MainStatusbar.xaml.cs">
+      <DependentUpon>MainStatusbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Toolbars\NodesToolbar.xaml.cs">
+      <DependentUpon>NodesToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Toolbars\StandardToolbar.xaml.cs">
+      <DependentUpon>StandardToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\Toolbars\ToolbarTray.xaml.cs">
+      <DependentUpon>ToolbarTray.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\TreeViewing\TreeView.xaml.cs">
+      <DependentUpon>TreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\VisualTrailing\StateNode.xaml.cs">
+      <DependentUpon>StateNode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\VisualTrailing\VisualTrail.xaml.cs">
+      <DependentUpon>VisualTrail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\XMLViewing\XMLView.xaml.cs">
+      <DependentUpon>XMLView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Libraries\INode.cs" />
+    <Compile Include="Libraries\ILibrary.cs" />
+    <Compile Include="Libraries\LibraryManager.cs" />
+    <Compile Include="Renderers\IRenderer.cs" />
+    <Compile Include="Renderers\RendererManager.cs" />
+    <Page Include="Interface\Designer\Connection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Designer\DesignArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Designer\Node.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Designer\Variables\NumericTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Designer\Variables\Variable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\FilesTab\FilesTabCollection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\FilesTab\FilesTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\FileViewing\FileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\FileViewing\FileViewTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Interface\Menus\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\ShaderIO\ShaderInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\ShaderIO\ShaderOutput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Statusbars\MainStatusbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Toolbars\NodesToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Toolbars\StandardToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Toolbars\ToolbarTray.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\TreeViewing\TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\VisualTrailing\StateNode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\VisualTrailing\VisualTrail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\XMLViewing\XMLView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Interface\Icons\AppIcon.png" />
+    <Resource Include="Interface\Icons\Copy.png" />
+    <Resource Include="Interface\Icons\Cut.png" />
+    <Resource Include="Interface\Icons\Delete.png" />
+    <Resource Include="Interface\Icons\New.png" />
+    <Resource Include="Interface\Icons\Open.png" />
+    <Resource Include="Interface\Icons\Paste.png" />
+    <Resource Include="Interface\Icons\Redo.png" />
+    <Resource Include="Interface\Icons\Save.png" />
+    <Resource Include="Interface\Icons\Undo.png" />
+    <Resource Include="Interface\Icons\ZoomIn.png" />
+    <Resource Include="Interface\Icons\ZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\WPFToolkit.Extended\WPFToolkit.Extended.csproj">
+      <Project>{72E591D6-8F83-4D8C-8F67-9C325E623234}</Project>
+      <Name>WPFToolkit.Extended</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

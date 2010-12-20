@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="ShaderComposer.Interface.FileViewing.FileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:FileViewing="clr-namespace:ShaderComposer.Interface.FileViewing"
+             xmlns:Designer="clr-namespace:ShaderComposer.Interface.Designer"
+             xmlns:XMLViewing="clr-namespace:ShaderComposer.Interface.XMLViewing"
+             xmlns:TreeViewing="clr-namespace:ShaderComposer.Interface.TreeViewing"
+             xmlns:ShaderIO="clr-namespace:ShaderComposer.Interface.ShaderIO"
+             xmlns:VisualTrailing="clr-namespace:ShaderComposer.Interface.VisualTrailing"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="700">
+
+    <Grid Background="#FF2A3A57" MinWidth="500">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" MinWidth="310" />
+            <ColumnDefinition Width="Auto" MinWidth="260" />
+        </Grid.ColumnDefinitions>
+
+        <GridSplitter ResizeDirection="Columns" Grid.Column="0" Grid.Row="0" Width="1" Margin="0,-4,0,-5" Background="#8C8E94" ShowsPreview="True"/>
+
+        <Grid Grid.Column="0">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="165" />
+            </Grid.RowDefinitions>
+            
+            <TabControl Grid.Row="0" Background="#FF2A3A57" Margin="-5,0,2,1" BorderThickness="1,1,0,0">
+
+                <FileViewing:FileViewTabItem Header="Designer" x:Name="DesignAreaTab" >
+                    <Designer:DesignArea />
+                </FileViewing:FileViewTabItem>
+
+                <FileViewing:FileViewTabItem Header="XML" x:Name="XMLTab" >
+                    <XMLViewing:XMLView />
+                </FileViewing:FileViewTabItem>
+
+                <FileViewing:FileViewTabItem Header="Tree" x:Name="TreeTab" >
+                    <TreeViewing:TreeView />
+                </FileViewing:FileViewTabItem>
+
+                <FileViewing:FileViewTabItem Header="Shader input" x:Name="ShaderInputTab" >
+                    <ShaderIO:ShaderInput />
+                </FileViewing:FileViewTabItem>
+
+                <FileViewing:FileViewTabItem Header="Shader output" x:Name="ShaderOutputTab" >
+                    <ShaderIO:ShaderOutput />
+                </FileViewing:FileViewTabItem>
+            </TabControl>
+
+            <GridSplitter Grid.Row="1" Margin="-4,0,0,0" HorizontalAlignment="Stretch" Background="#8C8E94" ShowsPreview="True" Height="1" />
+
+            <TabControl Grid.Row="2" Background="#FF2A3A57" Margin="-5,3,2,-5" BorderThickness="1,1,0,1">
+                <FileViewing:FileViewTabItem Header="Visual Trail" x:Name="VisualTrailTab">
+                    <VisualTrailing:VisualTrail />
+                </FileViewing:FileViewTabItem>
+            </TabControl>
+            
+        </Grid>
+
+        <TabControl Grid.Column="1" Background="#FF2A3A57" BorderThickness="0,1,1,1" Margin="0,0,-5,-5" Name="PreviewTabItem" >
+            <FileViewing:FileViewTabItem Header="Real-time preview">
+                <Grid MouseUp="Grid_MouseUp" >
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="384" Height="384" />
+                    
+                    <Line X1="50" X2="50" Y1="0" Y2="384" Stroke="Black" Opacity="0.4"/>
+                    <Line X1="0" X2="384" Y1="230" Y2="230" Stroke="Black" Opacity="0.4"/>
+                </Grid>
+            </FileViewing:FileViewTabItem>
+        </TabControl>
+    </Grid>
+    
+</UserControl>

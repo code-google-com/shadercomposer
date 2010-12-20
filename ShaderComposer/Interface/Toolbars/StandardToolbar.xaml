@@ -1,0 +1,74 @@
+﻿<ToolBar x:Class="ShaderComposer.Interface.Toolbars.StandardToolbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="24" d:DesignWidth="300"
+             OverflowMode="Never" Background="#FFBCC7D8" >
+
+    <ToolBar.Resources>
+        <!-- El Cheapo hack to make images within disabled toolbar buttons appear 'grayed out'.  This doesn't
+             gray them at all, but lowers their opacity so the (usually gray) background of the button shows through.
+             If WPF had a built-in facility for grayscaling images in disabled buttons, this kind of icky kludgery wouldn't
+             be necessary -->
+        <Style TargetType="{x:Type Image}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}, AncestorLevel=1}, Path=IsEnabled}" Value="False">
+                    <Setter Property="Opacity" Value="0.50"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ToolBar.Resources>
+    
+    <Button Command="New">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/New.png" Height="16"/>
+    </Button>
+
+    <Button Command="Open">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Open.png" Height="16"/>
+    </Button>
+
+    <Button Command="Save">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Save.png" Height="16"/>
+    </Button>
+
+    <Separator Background="DarkGray" />
+
+    <Button Command="Cut">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Cut.png" Height="16"/>
+    </Button>
+
+    <Button Command="Copy">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Copy.png" Height="16"/>
+    </Button>
+
+    <Button Command="Paste">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Paste.png" Height="16"/>
+    </Button>
+
+    <Button Command="Delete">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Delete.png" Height="16"/>
+    </Button>
+
+    <Separator Background="DarkGray" />
+
+    <Button Command="Undo">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Undo.png" Height="16"/>
+    </Button>
+
+    <Button Command="Redo">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/Redo.png" Height="16"/>
+    </Button>
+
+    <Separator Background="DarkGray" />
+
+    <Button Command="IncreaseZoom">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/ZoomIn.png" Height="16"/>
+    </Button>
+
+    <Button Command="DecreaseZoom">
+        <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/ZoomOut.png" Height="16"/>
+    </Button>
+
+</ToolBar>
