@@ -36,7 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.AvalonEdit">
+    <Reference Include="ICSharpCode.AvalonEdit, Version=4.0.0.5950, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdParty\AvalonEdit\ICSharpCode.AvalonEdit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -57,8 +58,10 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Compile Include="Compilers\HLSLCompiler.cs" />
-    <Compile Include="Compilers\VariableStruct.cs" />
+    <Compile Include="Compilers\HLSL\HLSLCompiler.cs" />
+    <Compile Include="Compilers\ICompiler.cs" />
+    <Compile Include="Compilers\HLSL\VariableStruct.cs" />
+    <Compile Include="Compilers\XML\XMLCompiler.cs" />
     <Compile Include="FileManagement\File.cs" />
     <Compile Include="FileManagement\FilesManager.cs" />
     <Compile Include="FileManagement\FileState.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="Libraries\INode.cs" />
     <Compile Include="Libraries\ILibrary.cs" />
     <Compile Include="Libraries\LibraryManager.cs" />
+    <Compile Include="Parser\XML\XMLParser.cs" />
     <Compile Include="Renderers\IRenderer.cs" />
     <Compile Include="Renderers\RendererManager.cs" />
     <Page Include="Interface\Designer\Connection.xaml">
@@ -261,7 +265,6 @@
     <Resource Include="Interface\Icons\ZoomIn.png" />
     <Resource Include="Interface\Icons\ZoomOut.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ThirdParty\WPFToolkit.Extended\WPFToolkit.Extended.csproj">
       <Project>{72E591D6-8F83-4D8C-8F67-9C325E623234}</Project>

@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 
 using ShaderComposer.Interface.Designer.Canvas;
 using ShaderComposer.Interface.Designer.Variables;
+using ShaderComposer.Libraries;
+using ShaderComposer.FileManagers;
 
 namespace ShaderComposer.Interface.Designer
 {
@@ -26,6 +28,47 @@ namespace ShaderComposer.Interface.Designer
         {
             InitializeComponent();
 
+            // Register for library added events
+            LibraryManager.Instance.LibraryAdded += new LibraryAddedHandler(LibraryAdded);
+
+            // Add already registered libraries
+            foreach (ILibrary library in LibraryManager.Instance.Libraries)
+                LibraryAdded(this, library);
+        }
+
+        // Library added event
+        private Dictionary<MenuItem, Type> nodeTypes = new Dictionary<MenuItem, Type>();
+
+        private void LibraryAdded(object sender, ILibrary library)
+        {
+            MenuItem libraryMenuItem = new MenuItem();
+            libraryMenuItem.Header = library.GetName();
+
+            foreach (Type node in library.GetNodeTypes())
+            {
+                MenuItem libraryNodeItem = new MenuItem();
+                libraryNodeItem.Header = node.Name;
+
+                nodeTypes[libraryNodeItem] = node;
+                libraryNodeItem.Click += new RoutedEventHandler(libraryNodeItem_Click);
+
+                libraryMenuItem.Items.Add(libraryNodeItem);
+            }
+
+            Libraries.Items.Add(libraryMenuItem);
+        }
+
+        // Add a new node to the graph
+        void libraryNodeItem_Click(object sender, RoutedEventArgs e)
+        {
+            Type node = nodeTypes[sender as MenuItem];
+
+            if (FilesManager.Instance.ActiveFile != null)
+            {
+                Point p = ContextMenu.TranslatePoint(new Point(0, 0), Canvas);
+
+                FilesManager.Instance.ActiveFile.ActiveState.AddNewNode(node, p);
+            }
         }
 
         // Methos to add nodes and connections

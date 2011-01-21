@@ -78,6 +78,8 @@ namespace TerrainRenderer
             {
                 slimDXScene.Render(timer.Elapsed.Milliseconds);
                 slimDXImage.InvalidateD3DImage();
+
+                OnSceneUpdated();
             }
         }
 
@@ -98,6 +100,25 @@ namespace TerrainRenderer
         {
             timer.Stop();
             CompositionTarget.Rendering -= OnRendering;
+        }
+
+
+        public string GetValueAt(double x, double y)
+        {
+            return slimDXImage.GetValueAt(x, y);
+        }
+
+        public event SceneUpdatedHandler SceneUpdated;
+
+        void OnSceneUpdated()
+        {
+            if (SceneUpdated != null)
+                SceneUpdated(this);
+        }
+
+
+        public void Destroy()
+        {
         }
     }
 }

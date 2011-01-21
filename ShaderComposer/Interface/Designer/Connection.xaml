@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="170" d:DesignWidth="216">
     
-    <Path Name="path" Stroke="Black" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+    <Path Name="path" Stroke="Black" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" MouseEnter="MouseEnter" MouseLeave="MouseLeave">
         <Path.Data>
             <GeometryGroup >
                 
@@ -24,6 +24,7 @@
                                 <PathFigure.Segments>
                                     <PathSegmentCollection>
                                         <BezierSegment x:Name="bezier" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                        <!-- <BezierSegment x:Name="bezier2" Point1="-120,-50" Point2="-120,-100" Point3="-100,-100" /> -->
                                     </PathSegmentCollection>
                                 </PathFigure.Segments>
                             </PathFigure>

@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Interop;
 
 using SlimDX.Direct3D9;
+using System.Drawing;
+using SlimDX;
 
 namespace TerrainRenderer.SlimDX2
 {
@@ -85,6 +87,20 @@ namespace TerrainRenderer.SlimDX2
             }
             else
                 throw new ArgumentException("Texture must be created with ResourceOptionFlags.Shared");
+        }
+
+        public string GetValueAt(double x, double y)
+        {
+            int ix = (int)(x * PixelWidth);
+            int iy = (int)(y * PixelWidth);
+
+            Int32Rect r = new Int32Rect(ix, iy, 1, 1);
+
+            byte[] value = new byte[4];
+
+            CopyBackBuffer().CopyPixels(r, value, PixelWidth * 4, 0);
+
+            return value[0] + ", " + value[1] + ", " + value[2] + ", " + value[3];
         }
 
         void InitD3D9()

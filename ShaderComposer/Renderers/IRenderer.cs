@@ -7,6 +7,8 @@ using System.Windows.Controls;
 
 namespace ShaderComposer.Renderers
 {
+    public delegate void SceneUpdatedHandler(object sender);
+
     public interface IRenderer
     {
         string GetName();
@@ -15,6 +17,13 @@ namespace ShaderComposer.Renderers
 
         ImageSource Initialize();
 
+        void Destroy();
+
         void SetSourceCode(string sourceCode);
+
+        string GetValueAt(double x, double y);
+
+        // Scene updated event
+        event SceneUpdatedHandler SceneUpdated;
     }
 }

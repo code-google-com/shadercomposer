@@ -22,10 +22,13 @@ namespace ShaderComposer.Interface.Designer.Variables
     /// </summary>
     public partial class Variable : UserControl
     {
-        
-        public Variable()
+        public readonly string Name;
+
+        public Variable(string name)
         {
             InitializeComponent();
+
+            Name = name;
 
             // Set default values
             Type = VariableType.Input;
@@ -167,6 +170,12 @@ namespace ShaderComposer.Interface.Designer.Variables
         public Color getColor()
         {
             return inputColor.SelectedColor;
+        }
+
+        // Retreive boolean value
+        public bool getBoolean()
+        {
+            return inputBoolean.SelectedIndex == 1;
         }
 
         // Input types: link, constant value or varying

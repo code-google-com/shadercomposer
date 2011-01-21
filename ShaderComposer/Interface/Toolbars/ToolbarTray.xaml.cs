@@ -24,19 +24,21 @@ namespace ShaderComposer.Interface.Toolbars
             InitializeComponent();
         }
 
+        // Menu for hiding or showing toolbars
         private void ToolbarsMenu_Opened(object sender, RoutedEventArgs e)
         {
-
+            MenuItem_StandardToolbar.IsChecked = MainWindow.Instance.ToolbarTray.StandardToolbar.IsVisible;
+            MenuItem_NodesToolbar.IsChecked = MainWindow.Instance.ToolbarTray.NodesToolbar.IsVisible;
         }
 
         private void StandardToolbar_CheckedChanged(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Instance.ToolbarTray.StandardToolbar.Visibility = MenuItem_StandardToolbar.IsChecked ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void NodesToolbar_CheckedChanged(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Instance.ToolbarTray.NodesToolbar.Visibility = MenuItem_NodesToolbar.IsChecked ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
+using System.Windows.Media;
+
 using ShaderComposer.Libraries;
 using ShaderComposer.Renderers;
-using System.Windows.Media;
 using ShaderComposer.Interface.Designer;
-using ShaderComposer.Compilers;
+using ShaderComposer.Compilers.HLSL;
 using ShaderComposer.Interface.Designer.Variables;
+using ShaderComposer.Interface.Designer.Canvas;
+using ShaderComposer.Compilers.XML;
 
 namespace ShaderComposer.FileManagement
 {
@@ -18,14 +22,17 @@ namespace ShaderComposer.FileManagement
             this.file = file;
         }
 
+        // Copy the nodes
+        public Dictionary<Node, Node> dictionaryOldToNew = new Dictionary<Node, Node>();
+
         // Create a copy of the file state
-        public FileState(FileState fileState)
+        public FileState(FileState fileState, bool newState = true)
         {
             this.file = fileState.File;
             this.renderer = fileState.Renderer;
 
             // Copy the nodes
-            Dictionary<Node, Node> dictionaryOldToNew = new Dictionary<Node, Node>();
+            dictionaryOldToNew = new Dictionary<Node, Node>();
 
             foreach (Node node in fileState.Nodes)
             {
@@ -45,14 +52,17 @@ namespace ShaderComposer.FileManagement
                     int inIndex = connection.InputVariable.Node.Variables.IndexOf(connection.InputVariable);
 
                     Connection newConnection = new Connection();
-                    newConnection.DesignArea = connection.DesignArea;
+                    // newConnection.DesignArea = connection.DesignArea;
                     newConnection.OutputVariable = dictionaryOldToNew[connection.OutputVariable.Node].Variables[outIndex];
                     newConnection.InputVariable = dictionaryOldToNew[connection.InputVariable.Node].Variables[inIndex];
                 }
             }
 
-            PreviousState = fileState;
-            fileState.NextStates.Add(this);
+            if (newState)
+            {
+                PreviousState = fileState;
+                fileState.NextStates.Add(this);
+            }
         }
 
         public void stop()
@@ -123,19 +133,29 @@ namespace ShaderComposer.FileManagement
                 ImageSource imageSource = renderer.Initialize();
                 File.FileView.SetPreviewSource(imageSource);
 
+                renderer.SceneUpdated += new SceneUpdatedHandler(renderer_SceneUpdated);
+
                 Build();
             }
+        }
+
+        void renderer_SceneUpdated(object sender)
+        {
+            File.FileView.UpdateTestValues();
         }
 
         // All nodes present in the graph
         public List<Node> Nodes = new List<Node>();
 
         // Adds a new node to the graph
-        public void AddNewNode(Type nodeType)
+        public void AddNewNode(Type nodeType, Point position)
         {
             INode inode = nodeType.GetConstructor(new Type[0]).Invoke(new Object[0]) as INode;
 
             Node node = new Node(inode);
+
+            DynamicCanvas.SetLeft(node, position.X);
+            DynamicCanvas.SetTop(node, position.Y);
 
             File.FileView.DesignArea.AddNode(node);
 
@@ -159,11 +179,39 @@ namespace ShaderComposer.FileManagement
             // Update shader source code viewer
             File.FileView.ShaderOutput.SourceCode = hlslCompiler.SourceCode;
 
+            // Update intermediate preview possibilities
+            List<Variable> IntermediateOutputs = new List<Variable>();
+
+            foreach (Node node in Nodes) 
+            {
+                if (!node.inode.IsOutputNode())
+                    foreach (Variable variable in node.Variables)
+                    {
+                        if (variable.Type == Variable.VariableType.Input && variable.InputType == Variable.InputTypes.Link)
+                        {
+                            IntermediateOutputs.Add(variable);
+                        }
+                    }
+            }
+
+            File.FileView.SetIntermediateOutputs(IntermediateOutputs);
+
             // Update the current renderer
             if (renderer != null)
             {
                 renderer.SetSourceCode(hlslCompiler.SourceCode);
             }
+        }
+
+        // Rebuilds the XML
+        public void BuildXML()
+        {
+            // Compile the shader to XML
+            XMLCompiler xmlCompiler = new XMLCompiler(this);
+            xmlCompiler.Compile();
+
+            // Update xml viewer
+            File.FileView.XMLView.TextEditor.Text = xmlCompiler.SourceCode;
         }
     }
 }

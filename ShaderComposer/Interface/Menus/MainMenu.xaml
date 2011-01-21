@@ -44,9 +44,12 @@
             
             <Separator />
             
-            <MenuItem Header="_Build" Click="MenuItem_Click">
+            <MenuItem Header="_Build" Click="MenuItem_Build_Click">
             </MenuItem>
-                      
+
+            <MenuItem Header="_Auto Build" IsCheckable="True">
+            </MenuItem>
+            
             <Separator />
 
             <MenuItem Header="_Exit" InputGestureText="Alt+F4" Command="Stop">
@@ -123,7 +126,7 @@
 
             <Separator />
             
-            <MenuItem Header="_Load library..." />
+            <MenuItem Header="_Load library..." Click="MenuItem_LoadLibrary_Click" />
             
         </MenuItem>
         
@@ -132,7 +135,7 @@
 
             <Separator />
             
-            <MenuItem Header="_Load renderer..." />
+            <MenuItem Header="_Load renderer..." Click="MenuItem_LoadRenderer_Click" />
             
         </MenuItem>
 

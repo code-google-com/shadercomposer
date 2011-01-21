@@ -16,7 +16,7 @@ namespace ShaderComposer.Libraries
         bool IsOutputNode();
 
         List<Variable> GetVariables();
-
+        
         string GetSource(Dictionary<Variable, string> variableIdentifiers);
     }
 }

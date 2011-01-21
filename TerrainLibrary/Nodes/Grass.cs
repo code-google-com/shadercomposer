@@ -35,12 +35,12 @@ namespace TerrainLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varUV = new Variable();
+            varUV = new Variable("uv");
             varUV.Type = Variable.VariableType.Input;
             varUV.Text = "UV";
             variables.Add(varUV);
 
-            varColor = new Variable();
+            varColor = new Variable("color");
             varColor.Type = Variable.VariableType.Output;
             varColor.Text = "Color";
             variables.Add(varColor);

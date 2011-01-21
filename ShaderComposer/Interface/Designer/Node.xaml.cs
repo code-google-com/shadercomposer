@@ -51,7 +51,7 @@ namespace ShaderComposer.Interface.Designer
         {
             InitializeComponent();
 
-            this.inode = node.inode;
+            this.inode = node.inode.GetType().GetConstructor(new Type[]{}).Invoke(new object[]{}) as INode;
 
             DynamicCanvas.SetLeft(this, DynamicCanvas.GetLeft(node));
             DynamicCanvas.SetTop(this, DynamicCanvas.GetTop(node));
@@ -59,9 +59,28 @@ namespace ShaderComposer.Interface.Designer
             Width = node.Width;
             Height = node.Height;
 
-            foreach (Variable variable in node.Variables)
+            // Add all variables
+            List<Variable> vars = inode.GetVariables();
+
+            for (int i = 0; i < vars.Count; i++)
             {
-                AddVariable(new Variable(variable));
+                Variable nvar = vars[i];
+                Variable ovar = node.Variables[i];
+
+                nvar.Type = ovar.Type;
+                nvar.InputType = ovar.InputType;
+
+                nvar.Text = ovar.Text;
+
+                nvar.inputFloat1.Text = ovar.inputFloat1.Text;
+                nvar.inputFloat2.Text = ovar.inputFloat2.Text;
+                nvar.inputFloat3.Text = ovar.inputFloat3.Text;
+                nvar.inputFloat4.Text = ovar.inputFloat4.Text;
+                nvar.inputColor.SelectedColor = ovar.inputColor.SelectedColor;
+                nvar.inputBoolean.SelectedIndex = ovar.inputBoolean.SelectedIndex;
+                nvar.inputVarying.SelectedIndex = ovar.inputVarying.SelectedIndex;
+
+                AddVariable(nvar);
             }
 
             NodeName.Text = node.NodeName.Text;

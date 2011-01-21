@@ -35,8 +35,14 @@ namespace ShaderComposer.Interface.Toolbars
 
         void LibraryAdded(object sender, ILibrary library)
         {
+            Menu libraryMenu = new Menu();
+            ToolBar.SetOverflowMode(libraryMenu, OverflowMode.AsNeeded);
+            libraryMenu.Background = new SolidColorBrush(Color.FromRgb((byte)0xBC, (byte)0xC7, (byte)0xD8));
+            Items.Add(libraryMenu);
+
             MenuItem libraryMenuItem = new MenuItem();
             libraryMenuItem.Header = library.GetName();
+            libraryMenu.Items.Add(libraryMenuItem);
 
             foreach (Type node in library.GetNodeTypes())
             {
@@ -57,7 +63,7 @@ namespace ShaderComposer.Interface.Toolbars
 
             if (FilesManager.Instance.ActiveFile != null)
             {
-                FilesManager.Instance.ActiveFile.ActiveState.AddNewNode(node);
+                FilesManager.Instance.ActiveFile.ActiveState.AddNewNode(node, new Point(0, 0));
             }
         }
     }

@@ -34,7 +34,7 @@ namespace DefaultLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varFinalOutput = new Variable();
+            varFinalOutput = new Variable("output");
             varFinalOutput.Type = Variable.VariableType.Input;
             varFinalOutput.Text = "Final output";
             variables.Add(varFinalOutput);

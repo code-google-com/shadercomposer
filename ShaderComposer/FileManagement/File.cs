@@ -6,6 +6,7 @@ using System.IO;
 
 using ShaderComposer.FileManagers;
 using ShaderComposer.Interface.FileViewing;
+using ShaderComposer.Parser.XML;
 
 namespace ShaderComposer.FileManagement
 {
@@ -58,21 +59,33 @@ namespace ShaderComposer.FileManagement
             file.FilePath = fileName;
             file.IsChanged = false;
 
+            // Read XML
+            string xmlContent = System.IO.File.ReadAllText(file.FilePath);
+
+            XMLParser.Parse(xmlContent, file);
+
             return file;
         }
 
         // Save and SaveAs methods
         public void Save()
         {
+            // Compile and write XML
+            ActiveState.BuildXML();
+            string xmlContent = FileView.XMLView.TextEditor.Text;
+
+            System.IO.File.WriteAllText(FilePath, xmlContent);
+
+            // 
             IsChanged = false;
             OnSaved(EventArgs.Empty);
         }
 
         public void SaveAs(string fileName)
         {
+            //
             FilePath = fileName;
-            IsChanged = false;
-            OnSaved(EventArgs.Empty);
+            Save();
         }
 
         // Close methods

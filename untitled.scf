@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!-- Auto generated XML description -->
+<ShaderDescription Version="0.1">
+	<Nodes>
+		<Node X="100" Y="16,15">
+			<Variables>
+				<Variable ID="025BEDD3" Name="A" Type="Varying" value="camera" />
+				<Variable ID="01504B6C" Name="B" Type="Float2" value1="0" value2="0" />
+				<Variable ID="01E5C9DD" Name="AplusB" Type="Link" />
+			</Variables>
+		</Node>
+		<Node X="270" Y="68,16">
+			<Variables>
+				<Variable ID="01A293EE" Name="output" Type="Link" />
+			</Variables>
+		</Node>
+	</Nodes>
+	<Connections>
+		<Connection SourceID="01E5C9DD" DestinationID="01A293EE" />
+	</Connections>
+</ShaderDescription>

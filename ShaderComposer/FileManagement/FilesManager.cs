@@ -88,7 +88,7 @@ namespace ShaderComposer.FileManagers
             if (ActiveFile != null)
             {
                 SaveFileDialog dialog = new SaveFileDialog();
-                dialog.FileName = ActiveFile.FilePath;
+                dialog.FileName = ActiveFile.FileName;
                 dialog.DefaultExt = ".scf";
                 dialog.Filter = "Shader Composition file (.scf)|*.scf";
 
