@@ -36,17 +36,17 @@ namespace DefaultLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varA = new Variable();
+            varA = new Variable("A");
             varA.Type = Variable.VariableType.Input;
             varA.Text = "A";
             variables.Add(varA);
 
-            varB = new Variable();
+            varB = new Variable("B");
             varB.Type = Variable.VariableType.Input;
             varB.Text = "B";
             variables.Add(varB);
 
-            varADotB = new Variable();
+            varADotB = new Variable("AdotB");
             varADotB.Type = Variable.VariableType.Output;
             varADotB.Text = "A dot B";
             variables.Add(varADotB);

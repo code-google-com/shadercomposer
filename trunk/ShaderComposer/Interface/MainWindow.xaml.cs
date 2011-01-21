@@ -28,6 +28,9 @@ namespace ShaderComposer
         {
             InitializeComponent();
 
+            //
+            Instance = this;
+
             // Initialize the library manager
             LibraryManager.Instance.LoadDefaultLibraries();
 
@@ -36,8 +39,9 @@ namespace ShaderComposer
 
             // Initialize the files manager
             FilesManager.Instance.TabCollection = FilesTabCollection;
-
         }
+
+        public static MainWindow Instance;
 
         //
         private void Command_New(object sender, ExecutedRoutedEventArgs e)

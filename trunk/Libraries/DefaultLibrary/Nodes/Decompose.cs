@@ -38,27 +38,27 @@ namespace DefaultLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varInput = new Variable();
+            varInput = new Variable("Input");
             varInput.Type = Variable.VariableType.Input;
             varInput.Text = "Input";
             variables.Add(varInput);
 
-            varX = new Variable();
+            varX = new Variable("X");
             varX.Type = Variable.VariableType.Output;
             varX.Text = "X";
             variables.Add(varX);
 
-            varY = new Variable();
+            varY = new Variable("Y");
             varY.Type = Variable.VariableType.Output;
             varY.Text = "Y";
             variables.Add(varY);
 
-            varZ = new Variable();
+            varZ = new Variable("Z");
             varZ.Type = Variable.VariableType.Output;
             varZ.Text = "Z";
             variables.Add(varZ);
 
-            varW = new Variable();
+            varW = new Variable("W");
             varW.Type = Variable.VariableType.Output;
             varW.Text = "W";
             variables.Add(varW);

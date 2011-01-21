@@ -39,32 +39,32 @@ namespace TerrainLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varA = new Variable();
+            varA = new Variable("A");
             varA.Type = Variable.VariableType.Input;
             varA.Text = "A";
             variables.Add(varA);
 
-            varB = new Variable();
+            varB = new Variable("B");
             varB.Type = Variable.VariableType.Input;
             varB.Text = "B";
             variables.Add(varB);
 
-            varInput = new Variable();
+            varInput = new Variable("Input");
             varInput.Type = Variable.VariableType.Input;
             varInput.Text = "Input";
             variables.Add(varInput);
 
-            varTreshold = new Variable();
+            varTreshold = new Variable("Treshold");
             varTreshold.Type = Variable.VariableType.Input;
             varTreshold.Text = "Treshold";
             variables.Add(varTreshold);
 
-            varBlend = new Variable();
+            varBlend = new Variable("Blend");
             varBlend.Type = Variable.VariableType.Input;
             varBlend.Text = "Blend";
             variables.Add(varBlend);
 
-            varResult = new Variable();
+            varResult = new Variable("Result");
             varResult.Type = Variable.VariableType.Output;
             varResult.Text = "Result";
             variables.Add(varResult);

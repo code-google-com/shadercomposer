@@ -18,22 +18,7 @@
         
         <Toolbars:StandardToolbar x:Name="StandardToolbar" />
 
-        <Toolbars:NodesToolbar x:Name="NodesToolbar">
-
-            <Menu ToolBar.OverflowMode="AsNeeded" Background="#FFBCC7D8">
-                <MenuItem Header="Default">
-                    <MenuItem Header="Add"/>
-                    <MenuItem Header="Multiply"/>
-                </MenuItem>
-            </Menu>
-
-            <Menu ToolBar.OverflowMode="AsNeeded" Background="#FFBCC7D8">
-                <MenuItem Header="Logic">
-                    <MenuItem Header="If"/>
-                </MenuItem>
-            </Menu>
-
-        </Toolbars:NodesToolbar>
+        <Toolbars:NodesToolbar x:Name="NodesToolbar" />
 
     </ToolBarTray>
     

@@ -10,7 +10,7 @@
              xmlns:ShaderIO="clr-namespace:ShaderComposer.Interface.ShaderIO"
              xmlns:VisualTrailing="clr-namespace:ShaderComposer.Interface.VisualTrailing"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="700">
+             d:DesignHeight="800" d:DesignWidth="800">
 
     <Grid Background="#FF2A3A57" MinWidth="500">
 
@@ -62,16 +62,81 @@
             
         </Grid>
 
-        <TabControl Grid.Column="1" Background="#FF2A3A57" BorderThickness="0,1,1,1" Margin="0,0,-5,-5" Name="PreviewTabItem" >
-            <FileViewing:FileViewTabItem Header="Real-time preview">
-                <Grid MouseUp="Grid_MouseUp" >
-                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="384" Height="384" />
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TabControl Grid.Row="0" Background="#FF2A3A57" BorderThickness="0,1,1,1" Margin="0,0,-5,-5" Name="PreviewTabItem" >
+                <FileViewing:FileViewTabItem Header="Real-time preview">
+                    <StackPanel>
+                        <Grid MouseUp="Grid_MouseUp" >
+                            <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="384" Height="384" />
+
+                            <Line X1="50" X2="50" Y1="0" Y2="384" Stroke="Black" Opacity="0.4"/>
+                            <Line X1="0" X2="384" Y1="230" Y2="230" Stroke="Black" Opacity="0.4"/>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test value:" />
+                            <Label Content="0" />
+                        </StackPanel>
+                    </StackPanel>
+                </FileViewing:FileViewTabItem>
+            </TabControl>
+
+            <TabControl Grid.Row="1" Background="#FF2A3A57" BorderThickness="0,1,1,1" Margin="0,0,-5,-5" Name="IntermediatePreviewTabItem" >
+                <FileViewing:FileViewTabItem Header="Intermediate outputs">
                     
-                    <Line X1="50" X2="50" Y1="0" Y2="384" Stroke="Black" Opacity="0.4"/>
-                    <Line X1="0" X2="384" Y1="230" Y2="230" Stroke="Black" Opacity="0.4"/>
-                </Grid>
-            </FileViewing:FileViewTabItem>
-        </TabControl>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Column="0" Grid.Row="0">
+                            <ComboBox SelectionChanged="ComboBox0_SelectionChanged"/>
+                            <Grid MouseUp="Grid0_MouseUp">
+                                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Height="192" />
+
+                                <Line X1="50" X2="50" Y1="0" Y2="192" Stroke="Black" Opacity="0.4"/>
+                                <Line X1="0" X2="192" Y1="30" Y2="30" Stroke="Black" Opacity="0.4"/>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Test value:" />
+                                <Label Content="0" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Grid.Row="0">
+                            <ComboBox SelectionChanged="ComboBox1_SelectionChanged"/>
+                            <Grid MouseUp="Grid1_MouseUp">
+                                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Height="192" />
+
+                                <Line X1="50" X2="50" Y1="0" Y2="192" Stroke="Black" Opacity="0.4"/>
+                                <Line X1="0" X2="192" Y1="30" Y2="30" Stroke="Black" Opacity="0.4"/>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Test value:" />
+                                <Label Content="0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    
+                    
+                    
+                    
+                </FileViewing:FileViewTabItem>
+            </TabControl>
+
+        </Grid>
+        
+        
     </Grid>
     
 </UserControl>

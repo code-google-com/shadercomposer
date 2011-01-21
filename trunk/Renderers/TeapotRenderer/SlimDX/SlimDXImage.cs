@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Interop;
 
 using SlimDX.Direct3D9;
+using System.Drawing;
+using SlimDX;
 
 namespace TeapotRenderer.SlimDX2
 {
@@ -101,6 +103,20 @@ namespace TeapotRenderer.SlimDX2
 
                 D3DDevice = new DeviceEx(D3DContext, 0, DeviceType.Hardware, IntPtr.Zero, CreateFlags.HardwareVertexProcessing | CreateFlags.Multithreaded | CreateFlags.FpuPreserve, presentparams);
             }
+        }
+
+        public string GetValueAt(double x, double y)
+        {
+            int ix = (int)(x * PixelWidth);
+            int iy = (int)(y * PixelWidth);
+
+            Int32Rect r = new Int32Rect(ix, iy, 1, 1);
+
+            byte[] value = new byte[4];
+
+            CopyBackBuffer().CopyPixels(r, value, PixelWidth * 4, 0);
+            
+            return value[0] + ", " + value[1] + ", " + value[2] + ", " + value[3];
         }
 
         void ShutdownD3D9()

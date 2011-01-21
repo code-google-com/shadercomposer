@@ -35,12 +35,12 @@ namespace DefaultLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varInput = new Variable();
+            varInput = new Variable("unnormal");
             varInput.Type = Variable.VariableType.Input;
             varInput.Text = "Unnormalized value";
             variables.Add(varInput);
 
-            varOutput = new Variable();
+            varOutput = new Variable("normal");
             varOutput.Type = Variable.VariableType.Output;
             varOutput.Text = "Normalized value";
             variables.Add(varOutput);

@@ -56,6 +56,13 @@ namespace TeapotRenderer
             return slimDXImage;
         }
 
+        public void Destroy()
+        {
+            StopRenderingScene();
+            slimDXScene.Dispose();
+            slimDXImage.Dispose();
+        }
+
         public void SetSourceCode(string sourceCode)
         {
             (slimDXScene as TeapotScene).SetSourceCode(sourceCode);
@@ -81,6 +88,8 @@ namespace TeapotRenderer
             {
                 slimDXScene.Render(timer.Elapsed.Milliseconds);
                 slimDXImage.InvalidateD3DImage();
+
+                OnSceneUpdated();
             }
         }
 
@@ -101,6 +110,20 @@ namespace TeapotRenderer
         {
             timer.Stop();
             CompositionTarget.Rendering -= OnRendering;
+        }
+
+
+        public string GetValueAt(double x, double y)
+        {
+            return slimDXImage.GetValueAt(x, y);
+        }
+
+        public event SceneUpdatedHandler SceneUpdated;
+
+        void OnSceneUpdated()
+        {
+            if (SceneUpdated != null)
+                SceneUpdated(this);
         }
     }
 }

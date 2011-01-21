@@ -34,7 +34,7 @@ namespace DefaultLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varPosition = new Variable();
+            varPosition = new Variable("position");
             varPosition.Type = Variable.VariableType.Output;
             varPosition.Text = "Position";
             variables.Add(varPosition);

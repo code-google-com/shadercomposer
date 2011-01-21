@@ -12,6 +12,13 @@
         
         <ScrollViewer Name="ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SizeChanged="ScrollViewer_SizeChanged" >
             <Viewbox Name="Viewbox" Stretch="Fill" SizeChanged="Viewbox_SizeChanged">
+                
+                <Viewbox.ContextMenu>
+                    <ContextMenu Name="ContextMenu">
+                        <MenuItem Header="Libraries" Name="Libraries" />
+                    </ContextMenu>
+                </Viewbox.ContextMenu>
+                
                 <Canvas:DynamicCanvas x:Name="Canvas" ClipToBounds="True" SizeWidthToContent="True" SizeHeightToContent="True" SizeChanged="Canvas_SizeChanged" MouseWheel="Canvas_MouseWheel">
                     <Rectangle Name="CanvasBackground" Fill="White" Width="{Binding ElementName=Canvas, Path=ActualWidth}" Height="{Binding ElementName=Canvas, Path=ActualHeight}"/>
                 </Canvas:DynamicCanvas>

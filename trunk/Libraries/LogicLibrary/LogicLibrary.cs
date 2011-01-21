@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using ShaderComposer.Libraries;
+using LogicLibrary.Nodes;
 
 namespace LogicLibrary
 {
@@ -24,6 +25,8 @@ namespace LogicLibrary
         public List<Type> GetNodeTypes()
         {
             List<Type> types = new List<Type>();
+            
+            types.Add(typeof(Select));
 
             return types;
         }

@@ -74,7 +74,10 @@ namespace ShaderComposer.Interface.Designer
                     outputVariable.AddLink(this);
 
                     // Update curve position
-                    updateCurve();
+                    if (DesignArea != null)
+                    {
+                        updateCurve();
+                    }
                 }
             }
         }
@@ -115,7 +118,10 @@ namespace ShaderComposer.Interface.Designer
                     inputVariable.AddLink(this);
 
                     // Update curve position
-                    updateCurve();
+                    if (DesignArea != null)
+                    {
+                        updateCurve();
+                    }
                 }
             }
         }
@@ -215,7 +221,10 @@ namespace ShaderComposer.Interface.Designer
             InputVariable = null;
             OutputVariable = null;
 
-            DesignArea.RemoveConnection(this);
+            if (DesignArea != null)
+            {
+                DesignArea.RemoveConnection(this);
+            }
         }
 
         private static void dragCreation(Connection newConnection, MouseEventArgs e) {
@@ -293,6 +302,16 @@ namespace ShaderComposer.Interface.Designer
             }
 
             return HitTestResultBehavior.Stop;
+        }
+
+        private void MouseEnter(object sender, MouseEventArgs e)
+        {
+            path.StrokeThickness = 6;
+        }
+
+        private void MouseLeave(object sender, MouseEventArgs e)
+        {
+            path.StrokeThickness = 3;
         }
 
 

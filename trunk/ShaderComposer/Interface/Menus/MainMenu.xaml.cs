@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ShaderComposer.Libraries;
 using ShaderComposer.Renderers;
 using ShaderComposer.FileManagers;
+using Microsoft.Win32;
 
 namespace ShaderComposer.Interface.Menus
 {
@@ -33,22 +34,24 @@ namespace ShaderComposer.Interface.Menus
             RendererManager.Instance.RendererAdded += new RendererAddedHandler(RendererAdded);
         }
 
+        // Menu for hiding or showing toolbars
         private void ToolbarsMenu_Opened(object sender, RoutedEventArgs e)
         {
-
+            MenuItem_StandardToolbar.IsChecked = MainWindow.Instance.ToolbarTray.StandardToolbar.IsVisible;
+            MenuItem_NodesToolbar.IsChecked = MainWindow.Instance.ToolbarTray.NodesToolbar.IsVisible;
         }
 
         private void StandardToolbar_CheckedChanged(object sender, RoutedEventArgs e)
         {
-            
+            MainWindow.Instance.ToolbarTray.StandardToolbar.Visibility = MenuItem_StandardToolbar.IsChecked ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void NodesToolbar_CheckedChanged(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Instance.ToolbarTray.NodesToolbar.Visibility = MenuItem_NodesToolbar.IsChecked ? Visibility.Visible : Visibility.Collapsed;
         }
         
-        //
+        // Library added event
         private Dictionary<MenuItem, Type> nodeTypes = new Dictionary<MenuItem, Type>();
 
         private void LibraryAdded(object sender, ILibrary library)
@@ -77,11 +80,11 @@ namespace ShaderComposer.Interface.Menus
 
             if (FilesManager.Instance.ActiveFile != null)
             {
-                FilesManager.Instance.ActiveFile.ActiveState.AddNewNode(node);
+                FilesManager.Instance.ActiveFile.ActiveState.AddNewNode(node, new Point(0, 0));
             }
         }
 
-        //
+        // Renderer added event
         private void RendererAdded(object sender, IRenderer renderer)
         {
             MenuItem rendererMenuItem = new MenuItem();
@@ -113,11 +116,12 @@ namespace ShaderComposer.Interface.Menus
         }
 
         // Rebuild the shader from the tree
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Build_Click(object sender, RoutedEventArgs e)
         {
             if (FilesManager.Instance.ActiveFile != null)
             {
                 FilesManager.Instance.ActiveFile.ActiveState.Build();
+                FilesManager.Instance.ActiveFile.ActiveState.BuildXML();
             }
         }
 
@@ -129,5 +133,40 @@ namespace ShaderComposer.Interface.Menus
                 FilesManager.Instance.ActiveFile.NewState();
             }
         }
+
+        // Manually load a library from file
+        private void MenuItem_LoadLibrary_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.DefaultExt = ".dll";
+            dialog.Filter = "Node library file (.dll)|*.dll";
+            dialog.Multiselect = true;
+
+            if (dialog.ShowDialog() ?? false)
+            {
+                foreach (string fileName in dialog.FileNames)
+                {
+                    LibraryManager.Instance.LoadLibrary(fileName);
+                }
+            }
+        }
+
+        // Manually load a renderer from file
+        private void MenuItem_LoadRenderer_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.DefaultExt = ".dll";
+            dialog.Filter = "Renderer (.dll)|*.dll";
+            dialog.Multiselect = true;
+
+            if (dialog.ShowDialog() ?? false)
+            {
+                foreach (string fileName in dialog.FileNames)
+                {
+                    RendererManager.Instance.LoadRenderer(fileName);
+                }
+            }
+        }
+
     }
 }

@@ -37,22 +37,22 @@ namespace DefaultLibrary.Nodes
         {
             List<Variable> variables = new List<Variable>();
 
-            varDensity = new Variable();
+            varDensity = new Variable("Density");
             varDensity.Type = Variable.VariableType.Input;
             varDensity.Text = "Density";
             variables.Add(varDensity);
 
-            varFogColor = new Variable();
+            varFogColor = new Variable("Color");
             varFogColor.Type = Variable.VariableType.Input;
             varFogColor.Text = "Color";
             variables.Add(varFogColor);
 
-            varInputColor = new Variable();
+            varInputColor = new Variable("Input");
             varInputColor.Type = Variable.VariableType.Input;
             varInputColor.Text = "Input";
             variables.Add(varInputColor);
 
-            varFinal = new Variable();
+            varFinal = new Variable("Output");
             varFinal.Type = Variable.VariableType.Output;
             varFinal.Text = "Output";
             variables.Add(varFinal);
