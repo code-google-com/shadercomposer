@@ -148,7 +148,7 @@ namespace ShaderComposer.FileManagement
         public List<Node> Nodes = new List<Node>();
 
         // Adds a new node to the graph
-        public void AddNewNode(Type nodeType, Point position)
+        public Node AddNewNode(Type nodeType, Point position)
         {
             INode inode = nodeType.GetConstructor(new Type[0]).Invoke(new Object[0]) as INode;
 
@@ -160,6 +160,8 @@ namespace ShaderComposer.FileManagement
             File.FileView.DesignArea.AddNode(node);
 
             Nodes.Add(node);
+
+            return node;
         }
 
         public void RemoveNode(Node node)
@@ -172,6 +174,9 @@ namespace ShaderComposer.FileManagement
         // Rebuilds the shader
         public void Build()
         {
+            if (!IsComplete)
+                return;
+
             // Compile the shader
             HLSLCompiler hlslCompiler = new HLSLCompiler(this);
             hlslCompiler.Compile();
@@ -206,12 +211,41 @@ namespace ShaderComposer.FileManagement
         // Rebuilds the XML
         public void BuildXML()
         {
+            if (!IsComplete)
+                return;
+
             // Compile the shader to XML
             XMLCompiler xmlCompiler = new XMLCompiler(this);
             xmlCompiler.Compile();
 
             // Update xml viewer
             File.FileView.XMLView.TextEditor.Text = xmlCompiler.SourceCode;
+        }
+
+        // Checks if state is complete
+        public bool IsComplete
+        {
+            get {
+                // Check if every input variable with type = Link has exactly 1 link connection
+                foreach (Node n in Nodes)
+                {
+                    foreach (Variable v in n.Variables)
+                    {
+                        if (v.Type == Variable.VariableType.Input)
+                        {
+                            if (v.InputType == Variable.InputTypes.Link)
+                            {
+                                if (v.GetLinks().Count != 1)
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
         }
     }
 }

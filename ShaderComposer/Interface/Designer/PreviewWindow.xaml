@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ShaderComposer.Interface.Designer.PreviewWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="128" Width="128" IsVisibleChanged="UserControl_IsVisibleChanged">
+
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="4" Name="PreviewBorder" MouseLeave="MouseEnterLeave" MouseEnter="MouseEnterLeave" MouseUp="MouseUp">
+
+        <Grid Background="GhostWhite" Name="PreviewGrid" MouseEnter="MouseEnterLeave" MouseLeave="MouseEnterLeave" MouseUp="MouseUp">
+            <Image Name="PinImage" Height="16" Width="16" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="100" MouseEnter="MouseEnterLeave" MouseLeave="MouseEnterLeave" MouseUp="MouseUp" />
+
+            <Image Name="PreviewImage" MouseEnter="MouseEnterLeave" MouseLeave="MouseEnterLeave" MouseUp="MouseUp" />
+        </Grid>
+        
+    </Border>
+    
+</UserControl>

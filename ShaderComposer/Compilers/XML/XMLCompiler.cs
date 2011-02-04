@@ -86,6 +86,10 @@ namespace ShaderComposer.Compilers.XML
         {
             xmlWriter.WriteStartElement("Node");
 
+            // Type
+            string guid = node.inode.GetIdentifier().ToString();
+            xmlWriter.WriteAttributeString("TypeID", guid);
+
             // Position
             double positionX = DynamicCanvas.GetLeft(node); string valueX = "" + ((int)(positionX * 100.0) / 100.0);
             double positionY = DynamicCanvas.GetTop(node);  string valueY = "" + ((int)(positionY * 100.0) / 100.0);
