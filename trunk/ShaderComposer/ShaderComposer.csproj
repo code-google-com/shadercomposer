@@ -76,6 +76,9 @@
     <Compile Include="Interface\Designer\Node.xaml.cs">
       <DependentUpon>Node.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interface\Designer\PreviewWindow.xaml.cs">
+      <DependentUpon>PreviewWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interface\Designer\Variables\NumericTextBox.xaml.cs">
       <DependentUpon>NumericTextBox.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interface\Designer\Node.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interface\Designer\PreviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -270,6 +277,10 @@
       <Project>{72E591D6-8F83-4D8C-8F67-9C325E623234}</Project>
       <Name>WPFToolkit.Extended</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Interface\Icons\Pin.gif" />
+    <Resource Include="Interface\Icons\Unpin.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

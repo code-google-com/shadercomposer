@@ -26,6 +26,8 @@ namespace ShaderComposer.Interface.Designer
         {
             InitializeComponent();
 
+            PreviewWindow.path = path;
+            PreviewWindow.parent = this;
         }
 
         // DesignArea that this connection belongs to
@@ -179,6 +181,11 @@ namespace ShaderComposer.Interface.Designer
                 bezier.Point2 = middlePoint2;
                 bezier.Point3 = EndPoint;
                 end.Center = EndPoint;
+
+                // Update position of preview window
+                PreviewWindow.Margin = new Thickness(StartPoint.X * 0.5 + EndPoint.X * 0.5 - 64.0, StartPoint.Y * 0.5 + EndPoint.Y * 0.5 - 64.0, 0, 0);
+
+                DesignArea.UpdateLayout();
             }
         }
 
@@ -306,14 +313,35 @@ namespace ShaderComposer.Interface.Designer
 
         private void MouseEnter(object sender, MouseEventArgs e)
         {
-            path.StrokeThickness = 6;
+            updatePreviewWindow();
         }
 
         private void MouseLeave(object sender, MouseEventArgs e)
         {
-            path.StrokeThickness = 3;
+            updatePreviewWindow();
         }
 
+        private void MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            PreviewWindow.Pinned = !PreviewWindow.Pinned;
 
+            updatePreviewWindow();
+        }
+
+        private void updatePreviewWindow()
+        {
+            bool mouseOverPath = Mouse.DirectlyOver == path;
+            bool mouseOverPreview = (Mouse.DirectlyOver == PreviewWindow.PreviewGrid || Mouse.DirectlyOver == PreviewWindow.PreviewBorder || Mouse.DirectlyOver == PreviewWindow.PreviewImage || Mouse.DirectlyOver == PreviewWindow.PinImage);
+
+            if ((mouseOverPath || mouseOverPreview) && InputVariable != null)
+                PreviewWindow.Visibility = Visibility.Visible;
+            else
+                PreviewWindow.Visibility = Visibility.Collapsed;
+
+            if (PreviewWindow.Pinned)
+                PreviewWindow.Visibility = Visibility.Visible;
+
+            PreviewWindow.Opacity = PreviewWindow.Pinned ? 1.0 : 0.6;
+        }
     }
 }

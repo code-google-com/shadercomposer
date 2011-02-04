@@ -98,5 +98,21 @@ namespace ShaderComposer.Libraries
                 MessageBox.Show("Failed to load library: " + Path.GetFileName(fileName), "Error");
             }
         }
+
+        public Type FindNode(string typeID)
+        {
+            foreach (ILibrary l in libraries)
+            {
+                foreach (Type t in l.GetNodeTypes())
+                {
+                    INode inode = t.GetConstructor(new Type[0]).Invoke(new Object[0]) as INode;
+
+                    if (inode.GetIdentifier().ToString() == typeID)
+                        return t;
+                }
+            }
+
+            return null;
+        }
     }
 }

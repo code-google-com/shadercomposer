@@ -3,36 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Designer="clr-namespace:ShaderComposer.Interface.Designer"
              mc:Ignorable="d" 
              d:DesignHeight="170" d:DesignWidth="216">
+    <Grid>
+        
+        <Path Name="path" Stroke="Black" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" MouseEnter="MouseEnter" MouseLeave="MouseLeave" MouseUp="MouseUp">
+            <Path.Data>
+                <GeometryGroup >
+                
+                    <!-- start -->
+                    <EllipseGeometry x:Name="start" Center="0,0" RadiusX="2" RadiusY="2" />
+                
+                    <!-- end -->
+                    <EllipseGeometry x:Name="end" Center="0,0" RadiusX="2" RadiusY="2" />
+                
+                    <!-- path -->
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigureCollection >
+                                <PathFigure StartPoint="0,0" x:Name="line">
+                                    <PathFigure.Segments>
+                                        <PathSegmentCollection>
+                                            <BezierSegment x:Name="bezier" Point1="0,0" Point2="0,0" Point3="0,0" />
+                                        </PathSegmentCollection>
+                                    </PathFigure.Segments>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
     
-    <Path Name="path" Stroke="Black" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" MouseEnter="MouseEnter" MouseLeave="MouseLeave">
-        <Path.Data>
-            <GeometryGroup >
-                
-                <!-- start -->
-                <EllipseGeometry x:Name="start" Center="0,0" RadiusX="2" RadiusY="2" />
-                
-                <!-- end -->
-                <EllipseGeometry x:Name="end" Center="0,0" RadiusX="2" RadiusY="2" />
-                
-                <!-- path -->
-                <PathGeometry>
-                    <PathGeometry.Figures>
-                        <PathFigureCollection >
-                            <PathFigure StartPoint="0,0" x:Name="line">
-                                <PathFigure.Segments>
-                                    <PathSegmentCollection>
-                                        <BezierSegment x:Name="bezier" Point1="0,0" Point2="0,0" Point3="0,0" />
-                                        <!-- <BezierSegment x:Name="bezier2" Point1="-120,-50" Point2="-120,-100" Point3="-100,-100" /> -->
-                                    </PathSegmentCollection>
-                                </PathFigure.Segments>
-                            </PathFigure>
-                        </PathFigureCollection>
-                    </PathGeometry.Figures>
-                </PathGeometry>
-            </GeometryGroup>
-        </Path.Data>
-    </Path>
-    
+        <Designer:PreviewWindow x:Name="PreviewWindow" Visibility="Collapsed" Width="128" Height="128" HorizontalAlignment="Left" VerticalAlignment="Top">
+        
+        </Designer:PreviewWindow>
+    </Grid>
 </UserControl>

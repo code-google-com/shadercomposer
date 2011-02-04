@@ -26,6 +26,9 @@ namespace ShaderComposer.FileManagement
 
         public bool IsChanged { get; private set; }
 
+        //
+        public string sourceXml;
+
         // Changed event
         public event EventHandler Changed;
 
@@ -58,11 +61,11 @@ namespace ShaderComposer.FileManagement
             File file = new File();
             file.FilePath = fileName;
             file.IsChanged = false;
-
+            
             // Read XML
             string xmlContent = System.IO.File.ReadAllText(file.FilePath);
-
-            XMLParser.Parse(xmlContent, file);
+            file.sourceXml = xmlContent;
+            // XMLParser.Parse(xmlContent, file);
 
             return file;
         }

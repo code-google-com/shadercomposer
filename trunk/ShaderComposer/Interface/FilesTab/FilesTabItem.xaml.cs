@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 using ShaderComposer.FileManagement;
 using ShaderComposer.Interface.FileViewing;
+using ShaderComposer.Parser.XML;
 
 namespace ShaderComposer.Interface.FilesTab
 {
@@ -42,7 +43,15 @@ namespace ShaderComposer.Interface.FilesTab
             fileView.Initialize(file);
 
             Content = fileView;
+
+            // Load file
+            if (File.sourceXml != null)
+            {
+                XMLParser.Parse(File.sourceXml, file);
+            }
         }
+
+        
 
         // 
         void Saved(object sender, EventArgs e)
