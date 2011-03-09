@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ShaderComposer.FileManagers;
 
 namespace ShaderComposer.Interface.Toolbars
 {
@@ -22,6 +23,15 @@ namespace ShaderComposer.Interface.Toolbars
         public StandardToolbar()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (FilesManager.Instance.ActiveFile != null)
+            {
+                FilesManager.Instance.ActiveFile.ActiveState.Build();
+                FilesManager.Instance.ActiveFile.ActiveState.BuildXML();
+            }
         }
 
     }

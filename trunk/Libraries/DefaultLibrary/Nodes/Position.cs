@@ -14,7 +14,7 @@ namespace DefaultLibrary.Nodes
             return "Position";
         }
 
-        private const string IDENTIFIER = "3778ee0f-e93a-461a-8ff2-5e1ada9ae335";
+        private const string IDENTIFIER = "3778ee0f-e93a-461a-9ff2-5e1ada9ae335";
 
         public Guid GetIdentifier()
         {

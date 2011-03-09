@@ -142,8 +142,14 @@ namespace ShaderComposer.Interface.Designer
         {
             get
             {
+
                 if (inputVariable == null)
-                    return Mouse.GetPosition(DesignArea.Canvas);
+                {
+                    if (DesignArea != null)
+                        return Mouse.GetPosition(DesignArea.Canvas);
+                    else
+                        return new Point(0, 0);
+                }
                 else
                     return Point.Add(inputVariable.TranslatePoint(inputVariable.LinkPoint, Parent as DynamicCanvas), new Vector(-5, 0));
             }
@@ -162,6 +168,9 @@ namespace ShaderComposer.Interface.Designer
 
         private void updateCurve()
         {
+            if (DesignArea == null)
+                return;
+
             // Update visibility of the curve start and end points
             start.RadiusX = (outputVariable == null ? 2 : 0);
             start.RadiusY = (outputVariable == null ? 2 : 0);
@@ -330,6 +339,9 @@ namespace ShaderComposer.Interface.Designer
 
         private void updatePreviewWindow()
         {
+            if (inputVariable != null && inputVariable.Node.inode.IsOutputNode())
+                return;
+
             bool mouseOverPath = Mouse.DirectlyOver == path;
             bool mouseOverPreview = (Mouse.DirectlyOver == PreviewWindow.PreviewGrid || Mouse.DirectlyOver == PreviewWindow.PreviewBorder || Mouse.DirectlyOver == PreviewWindow.PreviewImage || Mouse.DirectlyOver == PreviewWindow.PinImage);
 

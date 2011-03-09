@@ -93,11 +93,24 @@ namespace ShaderComposer.Interface.Designer
         IRenderer ir0;
         Variable oldSelectedVariable;
 
+        public void Graph_Changed()
+        {
+            if (oldSelectedVariable != null)
+            {
+                updatePreview();
+            }
+        }
+
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (parent.InputVariable == oldSelectedVariable)
                 return;
 
+            updatePreview();
+        }
+
+        private void updatePreview()
+        {
             Image img = PreviewImage;
 
             if (ir0 != null)
@@ -124,14 +137,14 @@ namespace ShaderComposer.Interface.Designer
                     break;
                 }
             }
-            
+
             // Find selected node
             oldSelectedVariable = parent.InputVariable;
             Node selectedNode = altState.dictionaryOldToNew[oldSelectedVariable.Node];
 
             int oldIndex = oldSelectedVariable.Node.Variables.IndexOf(oldSelectedVariable);
             Variable selectedVariable = selectedNode.Variables[oldIndex];
-            
+
             // Remove output input if it was linked
             if (outputNode.Variables[0].InputType == Variable.InputTypes.Link)
             {

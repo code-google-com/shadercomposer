@@ -80,6 +80,12 @@ namespace ShaderComposer.Interface.Designer
                 nvar.inputBoolean.SelectedIndex = ovar.inputBoolean.SelectedIndex;
                 nvar.inputVarying.SelectedIndex = ovar.inputVarying.SelectedIndex;
 
+                nvar.typeMenuFloat1.IsChecked = ovar.IsFloat1();
+                nvar.typeMenuFloat2.IsChecked = ovar.IsFloat2();
+                nvar.typeMenuFloat3.IsChecked = ovar.IsFloat3();
+                nvar.typeMenuFloat4.IsChecked = ovar.IsFloat4();
+                nvar.typeMenuBoolean.IsChecked = true;
+
                 AddVariable(nvar);
             }
 

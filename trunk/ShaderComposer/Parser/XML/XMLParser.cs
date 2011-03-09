@@ -10,6 +10,8 @@ using ShaderComposer.Libraries;
 using System.Windows;
 using ShaderComposer.Interface.Designer.Variables;
 using ShaderComposer.Interface.Designer;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace ShaderComposer.Parser.XML
 {
@@ -22,7 +24,7 @@ namespace ShaderComposer.Parser.XML
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.IgnoreComments = true;
             settings.IgnoreWhitespace = true;
-
+            
             XmlReader xmlReader = XmlReader.Create(sr, settings);
             
             NumberFormatInfo nfi = new NumberFormatInfo();
@@ -43,7 +45,7 @@ namespace ShaderComposer.Parser.XML
 
                     if (t == null)
                     {
-                        return;
+                        continue;
                     }
 
                     xmlReader.MoveToAttribute("X"); float x = float.Parse(xmlReader.ReadContentAsString(), nfi);
@@ -62,6 +64,7 @@ namespace ShaderComposer.Parser.XML
                         {
                             xmlReader.MoveToAttribute("ID"); string ID = xmlReader.ReadContentAsString();
                             xmlReader.MoveToAttribute("Name"); string Name = xmlReader.ReadContentAsString();
+                            xmlReader.MoveToAttribute("Text"); string Text = xmlReader.ReadContentAsString();
                             xmlReader.MoveToAttribute("Type"); string Type = xmlReader.ReadContentAsString();
 
                             foreach (Variable v in n.Variables)
@@ -77,6 +80,62 @@ namespace ShaderComposer.Parser.XML
                                     if (Type == "Float3") v.InputType = Variable.InputTypes.Float3;
                                     if (Type == "Float4") v.InputType = Variable.InputTypes.Float4;
                                     if (Type == "Boolean") v.InputType = Variable.InputTypes.Boolean;
+
+                                    if (Type == "Float1" || Type == "Float2" || Type == "Float3" || Type == "Float4") {
+                                        xmlReader.MoveToAttribute("value1");
+                                        v.inputFloat1.Text = xmlReader.ReadContentAsString();
+                                    } 
+                                    if (Type == "Float2" || Type == "Float3" || Type == "Float4") {
+                                        xmlReader.MoveToAttribute("value2");
+                                        v.inputFloat2.Text = xmlReader.ReadContentAsString();
+                                    } 
+                                    if (Type == "Float3" || Type == "Float4") {
+                                        xmlReader.MoveToAttribute("value3");
+                                        v.inputFloat3.Text = xmlReader.ReadContentAsString();
+                                    } 
+                                    if (Type == "Float4") {
+                                        xmlReader.MoveToAttribute("value4");
+                                        v.inputFloat4.Text = xmlReader.ReadContentAsString();
+                                    } 
+                                    if (Type == "Color") {
+                                        xmlReader.MoveToAttribute("value1");
+                                        byte r = (byte)xmlReader.ReadContentAsInt();
+                                        xmlReader.MoveToAttribute("value2");
+                                        byte g = (byte)xmlReader.ReadContentAsInt();
+                                        xmlReader.MoveToAttribute("value3");
+                                        byte b = (byte)xmlReader.ReadContentAsInt();
+                                        xmlReader.MoveToAttribute("value4");
+                                        byte a = (byte)xmlReader.ReadContentAsInt();
+
+                                        v.inputColor.SelectedColor = Color.FromArgb(a, r, g, b);
+                                    }
+                                    if (Type == "Varying")
+                                    {
+                                        xmlReader.MoveToAttribute("value");
+                                        string varying = xmlReader.ReadContentAsString();
+
+                                        foreach (ComboBoxItem item in v.inputVarying.Items)
+                                            if ((string)item.Content == varying)
+                                            {
+                                                v.inputVarying.SelectedItem = item;
+                                                break;
+                                            }
+
+                                        //v.inputVarying.SelectedItem = varying;
+                                    }
+
+                                    xmlReader.MoveToAttribute("dim1");
+                                    v.typeMenuFloat1.IsChecked = xmlReader.ReadContentAsString() == "True" ? true : false;
+                                    xmlReader.MoveToAttribute("dim2");
+                                    v.typeMenuFloat2.IsChecked = xmlReader.ReadContentAsString() == "True" ? true : false;
+                                    xmlReader.MoveToAttribute("dim3");
+                                    v.typeMenuFloat3.IsChecked = xmlReader.ReadContentAsString() == "True" ? true : false;
+                                    xmlReader.MoveToAttribute("dim4");
+                                    v.typeMenuFloat4.IsChecked = xmlReader.ReadContentAsString() == "True" ? true : false;
+
+                                    v.updateTypeMenu();
+
+                                    v.Text = Text;
                                 }
                             }
                         } while (xmlReader.ReadToNextSibling("Variable"));
@@ -95,16 +154,22 @@ namespace ShaderComposer.Parser.XML
             {
                 do
                 {
-                    xmlReader.MoveToAttribute("SourceID"); string sourceID = xmlReader.ReadContentAsString();
-                    xmlReader.MoveToAttribute("DestinationID"); string destinationID = xmlReader.ReadContentAsString();
+                    try
+                    {
+                        xmlReader.MoveToAttribute("SourceID"); string sourceID = xmlReader.ReadContentAsString();
+                        xmlReader.MoveToAttribute("DestinationID"); string destinationID = xmlReader.ReadContentAsString();
+                        xmlReader.MoveToAttribute("PreviewPinned"); bool previewPinned = xmlReader.ReadContentAsString() == "True" ? true : false;
 
-                    // Create connection
-                    Connection c = new Connection();
-                    c.OutputVariable = vars[sourceID];
-                    c.InputVariable = vars[destinationID];
+                        // Create connection
+                        Connection c = new Connection();
+                        c.OutputVariable = vars[sourceID];
+                        c.InputVariable = vars[destinationID];
 
-                    file.FileView.DesignArea.AddConnection(c);
-                    c.DesignArea = file.FileView.DesignArea;
+                        file.FileView.DesignArea.AddConnection(c);
+                        c.DesignArea = file.FileView.DesignArea;
+                    }
+                    catch { }
+
                 } while (xmlReader.ReadToNextSibling("Connection"));
             }
 

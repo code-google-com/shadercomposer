@@ -108,6 +108,8 @@ namespace ShaderComposer.Compilers.XML
                 
                 xmlWriter.WriteAttributeString("Name", variable.Name);
 
+                xmlWriter.WriteAttributeString("Text", variable.Text);
+
                 xmlWriter.WriteAttributeString("Type", variable.InputType.ToString());
 
                 if (variable.InputType == Variable.InputTypes.Boolean)
@@ -130,6 +132,11 @@ namespace ShaderComposer.Compilers.XML
                     xmlWriter.WriteAttributeString("value4", variable.getColor().A.ToString());
                 }
 
+                xmlWriter.WriteAttributeString("dim1", variable.IsFloat1().ToString());
+                xmlWriter.WriteAttributeString("dim2", variable.IsFloat2().ToString());
+                xmlWriter.WriteAttributeString("dim3", variable.IsFloat3().ToString());
+                xmlWriter.WriteAttributeString("dim4", variable.IsFloat4().ToString());
+
                 xmlWriter.WriteEndElement();
             }
 
@@ -144,6 +151,7 @@ namespace ShaderComposer.Compilers.XML
 
             xmlWriter.WriteAttributeString("SourceID", connection.OutputVariable.GetHashCode().ToString("X8"));
             xmlWriter.WriteAttributeString("DestinationID", connection.InputVariable.GetHashCode().ToString("X8"));
+            xmlWriter.WriteAttributeString("PreviewPinned", connection.PreviewWindow.Pinned.ToString());
 
             xmlWriter.WriteEndElement();
         }

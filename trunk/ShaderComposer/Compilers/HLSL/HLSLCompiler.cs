@@ -140,8 +140,24 @@ namespace ShaderComposer.Compilers.HLSL
             SourceCode += "\t" + dictonaryInputStruct[outputNode].Identifier + " output;\n";
             SourceCode += "\toutput = " + dictionaryGetIdentifiers[outputNode] + "(varyings); \n\n";
 
-            SourceCode += "\tfloat4 color = output." + dictonaryInputStruct[outputNode].dictonaryVariableIdentifiers[outputNode.Variables[0]] + ";\n";
+            string outputVarName = dictonaryInputStruct[outputNode].dictonaryVariableIdentifiers[outputNode.Variables[0]];
 
+            if (outputNode.Variables[0].InputType == Variable.InputTypes.Link && outputNode.Variables[0].GetLinks().Count == 1)
+            {
+                if (outputNode.Variables[0].GetLinks()[0].OutputVariable.IsFloat4())
+                    SourceCode += "\tfloat4 color = output." + outputVarName + ";\n";
+                else if (outputNode.Variables[0].GetLinks()[0].OutputVariable.IsFloat3())
+                    SourceCode += "\tfloat4 color = float4(output." + outputVarName + ", 1);\n";
+                else if (outputNode.Variables[0].GetLinks()[0].OutputVariable.IsFloat2())
+                    SourceCode += "\tfloat4 color = float4(output." + outputVarName + ", 0, 1);\n";
+                else
+                    SourceCode += "\tfloat4 color = float4(output." + outputVarName + ", output." + outputVarName + ", output." + outputVarName + ", 1);\n";
+            }
+            else
+            {
+                SourceCode += "\tfloat4 color = output." + outputVarName + ";\n";
+            }
+             
             SourceCode += "\treturn color;\n";
             SourceCode += "}\n";
             

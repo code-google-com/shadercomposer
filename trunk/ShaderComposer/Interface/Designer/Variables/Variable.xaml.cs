@@ -359,6 +359,11 @@ namespace ShaderComposer.Interface.Designer.Variables
         // Apply user enforced type constraints
         private void MenuItem_CheckedChanged(object sender, RoutedEventArgs e)
         {
+            updateTypeMenu();
+        }
+
+        public void updateTypeMenu()
+        {
             string typeText = "";
 
             if (typeMenuFloat1 != null && typeMenuFloat1.IsChecked)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using ShaderComposer.Libraries;
 using ShaderComposer.Interface.Designer.Variables;
 
@@ -14,7 +15,7 @@ namespace DefaultLibrary.Nodes
             return "Decompose";
         }
 
-        private const string IDENTIFIER = "3778ee0f-e93a-461a-8ff2-5e1ada9ae330";
+        private const string IDENTIFIER = "3778ee0f-e93a-461a-8ff2-5e1ad39ae330";
 
         public Guid GetIdentifier()
         {

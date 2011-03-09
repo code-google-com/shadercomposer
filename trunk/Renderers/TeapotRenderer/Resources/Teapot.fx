@@ -64,6 +64,7 @@ PixelShader_Output PShader (VertexShader_Output input)
 	//output.color = float4(0.3 + float3(angle, angle, angle) * 0.7, 1);
 
 	output.color = getColor(float4(position, 1), float4(normal, 0), float4(cameraPositionWorld,1));
+	output.color.w = 1.0;
 
 	return output;
 }

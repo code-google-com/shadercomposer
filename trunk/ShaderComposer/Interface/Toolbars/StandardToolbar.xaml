@@ -71,4 +71,9 @@
         <Image Source="pack://application:,,,/ShaderComposer;component/Interface/Icons/ZoomOut.png" Height="16"/>
     </Button>
 
+    <Separator Background="DarkGray" />
+
+    <Button Click="Button_Click" Content="Build">
+    </Button>
+
 </ToolBar>

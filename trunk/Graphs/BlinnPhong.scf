@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!-- Auto generated XML description -->
+<ShaderDescription Version="0.1">
+	<Nodes>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae332" X="1364,90002441406" Y="171,149993896484">
+			<Variables>
+				<Variable ID="029AD893" Name="output" Text="Final output" Type="Link" dim1="False" dim2="False" dim3="False" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-7e1ada9ae339" X="9" Y="103,150001525879">
+			<Variables>
+				<Variable ID="00614D3F" Name="unnormal" Text="Light direction" Type="Float3" value1="0.5" value2="0.1" value3="1" dim1="False" dim2="False" dim3="True" dim4="False" />
+				<Variable ID="02102A1B" Name="normal" Text="Normalized light vector" Type="Link" dim1="False" dim2="False" dim3="True" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-7e1ada9ae339" X="4" Y="176,160003662109">
+			<Variables>
+				<Variable ID="005615FC" Name="unnormal" Text="Normal vector" Type="Varying" value="normal" dim1="False" dim2="False" dim3="True" dim4="False" />
+				<Variable ID="00712D90" Name="normal" Text="Renormalized normal vector" Type="Link" dim1="False" dim2="False" dim3="True" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-7e1ada9ae339" X="402" Y="57,1500015258789">
+			<Variables>
+				<Variable ID="005B95E0" Name="unnormal" Text="Unnormalized halfway vector" Type="Link" dim1="False" dim2="False" dim3="True" dim4="False" />
+				<Variable ID="013CA967" Name="normal" Text="Normalized halfway vector" Type="Link" dim1="False" dim2="False" dim3="True" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae339" X="262" Y="166,160003662109">
+			<Variables>
+				<Variable ID="01C47BF6" Name="A" Text="A" Type="Link" dim1="False" dim2="False" dim3="True" dim4="False" />
+				<Variable ID="0165EAA6" Name="B" Text="B" Type="Link" dim1="False" dim2="False" dim3="True" dim4="False" />
+				<Variable ID="03BAEA1E" Name="AdotB" Text="A dot B" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-6e1ada9ae339" X="407" Y="185,160003662109">
+			<Variables>
+				<Variable ID="0203D664" Name="unsaturized" Text="Unnsaturized value" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="028DFC85" Name="saturized" Text="Saturized value" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae331" X="568" Y="169,160003662109">
+			<Variables>
+				<Variable ID="02857F46" Name="A" Text="Diffuse factor" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="014B6529" Name="B" Text="Material diffuse" Type="Color" value1="47" value2="104" value3="10" value4="255" dim1="False" dim2="False" dim3="False" dim4="True" />
+				<Variable ID="03E59F02" Name="AtimesB" Text="Diffuse reflection" Type="Link" dim1="False" dim2="False" dim3="False" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-6e1ada9ae339" X="756" Y="61,1599998474121">
+			<Variables>
+				<Variable ID="002FFB59" Name="unsaturized" Text="Unnsaturized value" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="02EF53DE" Name="saturized" Text="Saturized value" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae333" X="914,559997558594" Y="46,1599998474121">
+			<Variables>
+				<Variable ID="00971F31" Name="A" Text="A" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="01D78231" Name="B" Text="B" Type="Float1" value1="50" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="0025D121" Name="AraisedB" Text="A raised to B" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae331" X="1042,46997070313" Y="48,1599998474121">
+			<Variables>
+				<Variable ID="017739E0" Name="A" Text="Specular factor" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="023B5D66" Name="B" Text="Material specular" Type="Color" value1="209" value2="6" value3="6" value4="255" dim1="False" dim2="False" dim3="False" dim4="True" />
+				<Variable ID="02947FE1" Name="AtimesB" Text="Specular reflection" Type="Link" dim1="False" dim2="False" dim3="False" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae330" X="749,369995117188" Y="215,160003662109">
+			<Variables>
+				<Variable ID="03767B8F" Name="A" Text="A" Type="Link" dim1="False" dim2="False" dim3="False" dim4="True" />
+				<Variable ID="001FDBBA" Name="B" Text="Ambient" Type="Color" value1="33" value2="33" value3="33" value4="255" dim1="False" dim2="False" dim3="False" dim4="True" />
+				<Variable ID="009AC1F9" Name="AplusB" Text="A + B" Type="Link" dim1="False" dim2="False" dim3="False" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae330" X="1251,76000976563" Y="157,160003662109">
+			<Variables>
+				<Variable ID="025E0902" Name="A" Text="A" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="03974D52" Name="B" Text="B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="00DE2CDE" Name="AplusB" Text="A + B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-6e1ada9ae339" X="913,760009765625" Y="236,160003662109">
+			<Variables>
+				<Variable ID="001C7C18" Name="unsaturized" Text="Unnsaturized value" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="001DEF84" Name="saturized" Text="Saturized value" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae339" X="617" Y="44,1599998474121">
+			<Variables>
+				<Variable ID="00539E19" Name="A" Text="A" Type="Varying" value="normal" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="0015D9BA" Name="B" Text="B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="032877F4" Name="AdotB" Text="A dot B" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae330" X="8" Y="10,1599998474121">
+			<Variables>
+				<Variable ID="00D95657" Name="A" Text="A" Type="Varying" value="camera" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="03697A96" Name="B" Text="B" Type="Varying" value="position" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="023EB7BF" Name="AplusB" Text="A + B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-7e1ada9ae339" X="128" Y="14,1599998474121">
+			<Variables>
+				<Variable ID="03108EBD" Name="unnormal" Text="Unnormalized value" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="0164A16B" Name="normal" Text="Normalized value" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae330" X="297" Y="63,1599998474121">
+			<Variables>
+				<Variable ID="038B5478" Name="A" Text="A" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="0323355E" Name="B" Text="B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+				<Variable ID="0016B6A3" Name="AplusB" Text="A + B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="False" />
+			</Variables>
+		</Node>
+	</Nodes>
+	<Connections>
+		<Connection SourceID="00DE2CDE" DestinationID="029AD893" PreviewPinned="False" />
+		<Connection SourceID="0016B6A3" DestinationID="005B95E0" PreviewPinned="False" />
+		<Connection SourceID="02102A1B" DestinationID="01C47BF6" PreviewPinned="False" />
+		<Connection SourceID="00712D90" DestinationID="0165EAA6" PreviewPinned="False" />
+		<Connection SourceID="03BAEA1E" DestinationID="0203D664" PreviewPinned="False" />
+		<Connection SourceID="028DFC85" DestinationID="02857F46" PreviewPinned="False" />
+		<Connection SourceID="032877F4" DestinationID="002FFB59" PreviewPinned="False" />
+		<Connection SourceID="02EF53DE" DestinationID="00971F31" PreviewPinned="False" />
+		<Connection SourceID="0025D121" DestinationID="017739E0" PreviewPinned="False" />
+		<Connection SourceID="03E59F02" DestinationID="03767B8F" PreviewPinned="False" />
+		<Connection SourceID="02947FE1" DestinationID="025E0902" PreviewPinned="False" />
+		<Connection SourceID="001DEF84" DestinationID="03974D52" PreviewPinned="False" />
+		<Connection SourceID="009AC1F9" DestinationID="001C7C18" PreviewPinned="False" />
+		<Connection SourceID="013CA967" DestinationID="0015D9BA" PreviewPinned="False" />
+		<Connection SourceID="023EB7BF" DestinationID="03108EBD" PreviewPinned="False" />
+		<Connection SourceID="0164A16B" DestinationID="038B5478" PreviewPinned="False" />
+		<Connection SourceID="02102A1B" DestinationID="0323355E" PreviewPinned="False" />
+	</Connections>
+</ShaderDescription>
