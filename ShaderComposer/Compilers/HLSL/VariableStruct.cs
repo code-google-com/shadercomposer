@@ -56,6 +56,11 @@ namespace ShaderComposer.Compilers
         // Determine the variable type
         private string determineTypeIdentifier(Variable variable)
         {
+            if (variable.Node.inode.IsOutputNode() && variable.InputType == Variable.InputTypes.Link && variable.GetLinks().Count == 1)
+            {
+                return determineTypeIdentifier(variable.GetLinks()[0].OutputVariable);
+            }
+
             if (variable.IsFloat4())
                 return "float4";
             else if (variable.IsFloat3())

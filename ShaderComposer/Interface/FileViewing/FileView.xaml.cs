@@ -137,6 +137,12 @@ namespace ShaderComposer.Interface.FileViewing
 
         public void UpdateTestValues()
         {
+            if (FilesManager.Instance.ActiveFile == null)
+                return;
+
+            if (FilesManager.Instance.ActiveFile.ActiveState.Renderer == null)
+                return;
+
             {
                 Grid g = (((PreviewTabItem.Items[0] as FileViewTabItem).Content as StackPanel).Children[0] as Grid);
 

@@ -57,7 +57,7 @@ namespace DefaultLibrary.Nodes
         // Source code
         public string GetSource(Dictionary<Variable, string> i)
         {
-            string result = "\toutput." + i[varARaisedToB] + " = pow(input." + i[varA] + ", input." + i[varB] + ";\n";
+            string result = "\toutput." + i[varARaisedToB] + " = pow(input." + i[varA] + ", input." + i[varB] + ");\n";
 
             return result;
         }

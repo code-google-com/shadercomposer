@@ -26,7 +26,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="165" />
+                <RowDefinition Height="0" />
             </Grid.RowDefinitions>
             
             <TabControl Grid.Row="0" Background="#FF2A3A57" Margin="-5,0,2,1" BorderThickness="1,1,0,0">
@@ -54,7 +54,7 @@
 
             <GridSplitter Grid.Row="1" Margin="-4,0,0,0" HorizontalAlignment="Stretch" Background="#8C8E94" ShowsPreview="True" Height="1" />
 
-            <TabControl Grid.Row="2" Background="#FF2A3A57" Margin="-5,3,2,-5" BorderThickness="1,1,0,1">
+            <TabControl Grid.Row="2" Background="#FF2A3A57" Margin="-5,3,2,-5" BorderThickness="1,1,0,1" Visibility="Hidden">
                 <FileViewing:FileViewTabItem Header="Visual Trail" x:Name="VisualTrailTab">
                     <VisualTrailing:VisualTrail />
                 </FileViewing:FileViewTabItem>

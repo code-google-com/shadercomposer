@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-16"?>
+<!-- Auto generated XML description -->
+<ShaderDescription Version="0.1">
+	<Nodes>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae332" X="746" Y="128,160003662109">
+			<Variables>
+				<Variable ID="01CEE63F" Name="output" Text="Final output" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-7e1ada9ae339" X="191" Y="24,1499996185303">
+			<Variables>
+				<Variable ID="035A659E" Name="unnormal" Text="Unnormalized value" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="017A464E" Name="normal" Text="Normalized value" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae339" X="405" Y="54,1500015258789">
+			<Variables>
+				<Variable ID="00954298" Name="A" Text="A" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="03E7AA7D" Name="B" Text="B" Type="Varying" value="normal" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="001A4E26" Name="AdotB" Text="A dot B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-291a-461a-8ff2-5e1ada9ae330" X="585" Y="76,1600036621094">
+			<Variables>
+				<Variable ID="00368423" Name="A" Text="A" Type="Color" value1="5" value2="42" value3="94" value4="255" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="00BB29AE" Name="B" Text="B" Type="Color" value1="52" value2="81" value3="142" value4="255" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="01F9ACE7" Name="Input" Text="Input" Type="Link" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="00FCB118" Name="Treshold" Text="Treshold" Type="Float1" value1="0.7" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="00785CF2" Name="Blend" Text="Blend" Type="Float1" value1="0" dim1="True" dim2="False" dim3="False" dim4="False" />
+				<Variable ID="0346E2CD" Name="Result" Text="Result" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+		<Node TypeID="3778ee0f-e93a-461a-8ff2-5e1ada9ae330" X="39" Y="17,1599998474121">
+			<Variables>
+				<Variable ID="01DA90FD" Name="A" Text="A" Type="Float4" value1="70" value2="200" value3="80" value4="0" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="0225E940" Name="B" Text="B" Type="Varying" value="position" dim1="True" dim2="True" dim3="True" dim4="True" />
+				<Variable ID="01914F24" Name="AminusB" Text="A - B" Type="Link" dim1="True" dim2="True" dim3="True" dim4="True" />
+			</Variables>
+		</Node>
+	</Nodes>
+	<Connections>
+		<Connection SourceID="0346E2CD" DestinationID="01CEE63F" PreviewPinned="False" />
+		<Connection SourceID="01914F24" DestinationID="035A659E" PreviewPinned="False" />
+		<Connection SourceID="017A464E" DestinationID="00954298" PreviewPinned="False" />
+		<Connection SourceID="001A4E26" DestinationID="01F9ACE7" PreviewPinned="False" />
+	</Connections>
+</ShaderDescription>

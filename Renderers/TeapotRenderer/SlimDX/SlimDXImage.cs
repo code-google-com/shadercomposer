@@ -6,6 +6,7 @@ using System.Windows.Interop;
 using SlimDX.Direct3D9;
 using System.Drawing;
 using SlimDX;
+using System.Windows.Media.Imaging;
 
 namespace TeapotRenderer.SlimDX2
 {
@@ -114,7 +115,10 @@ namespace TeapotRenderer.SlimDX2
 
             byte[] value = new byte[4];
 
-            CopyBackBuffer().CopyPixels(r, value, PixelWidth * 4, 0);
+            BitmapSource bs = CopyBackBuffer();
+            
+            if (bs != null)
+                bs.CopyPixels(r, value, PixelWidth * 4, 0);
             
             return value[0] + ", " + value[1] + ", " + value[2] + ", " + value[3];
         }

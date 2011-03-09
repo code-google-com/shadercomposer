@@ -187,6 +187,13 @@ namespace ShaderComposer.FileManagement
             // Update intermediate preview possibilities
             List<Variable> IntermediateOutputs = new List<Variable>();
 
+            // Update preview windows
+            foreach (Node n in Nodes)
+                foreach (Variable v in n.Variables)
+                    if (v.Type == Variable.VariableType.Input && v.InputType == Variable.InputTypes.Link && v.GetLinks().Count == 1)
+                        v.GetLinks()[0].PreviewWindow.Graph_Changed();
+
+            //
             foreach (Node node in Nodes) 
             {
                 if (!node.inode.IsOutputNode())
